@@ -18,6 +18,8 @@ The algorithm here can also handle sorting dates in common formats (if included)
 
 This library was highly inspired by [Ben Nadel's blog post, *User-Friendly Sort Of Alpha-Numeric Data In JavaScript*](http://www.bennadel.com/blog/2495-User-Friendly-Sort-Of-Alpha-Numeric-Data-In-JavaScript.htm).
 
+A demo of this library in action [can be found on jsFiddle](http://jsfiddle.net/wE7H2/3/).
+
 ## General Usage
 
 You must include one of the scripts in the `src` directory in your application.  They all have the same API, but have slightly different feature sets, so you can swap them out at any time:
@@ -50,7 +52,9 @@ The usage with orderBy is very simple. The `naturalSort` module adds a function 
 You can also use it in an array of sort values:
 
 	<ul>
-		<li ng-repeat="item in items | orderBy:['user.name',natural('title')]">{{ user.name }} - {{ title }}</li>
+		<li ng-repeat="item in items | orderBy:['user.name',natural('title')]">
+			{{ user.name }} - {{ title }}
+		</li>
 	</ul>
 
 ### Using the Service
@@ -61,10 +65,12 @@ The service can be injected, and provides two public functions:
 		
 		var myArray = ...;
 		
-		// The naturalSort function can be used to compare two values based on their natural sort value.
+		// The naturalSort function can be used to compare two values based
+		// on their natural sort value.
 		myArray.sort(naturalSort.naturalSort);
 		
-		// The naturalValue function parses a string into a standardized string that can be used for comparison.
+		// The naturalValue function parses a string into a standardized
+		// string that can be used for comparison.
 		var natValue = naturalSort.naturalValue("Foo 12");
 		
 	}]);
@@ -73,7 +79,7 @@ The service can be injected, and provides two public functions:
 
 ### Number Sorting
 
-Numbers are located in the string and padded out to a consistent length.  Integers are converted into decimals, then the integral part is padded with leading zeros, while the fractional part is padded with trailing zeros.  This converts numbers like so:
+Numbers are located in the string and padded out to a consistent length.  Integers are converted into decimals, then the integral part is padded with leading zeros, while the fractional part is padded with trailing zeros.  This converts numbers to look like:
 
     Original   Sorting Value
     3.64       00000000000000000003.64000000000000000000
