@@ -16,7 +16,7 @@ Example:
 
 The algorithm here can also handle sorting dates in common formats (if included), and version strings.
 
-This library was highly inspired by [Ben Nadel's blog post, *User-Friendly Sort Of Alpha-Numeric Data In JavaScript*](http://http://www.bennadel.com/blog/2495-User-Friendly-Sort-Of-Alpha-Numeric-Data-In-JavaScript.htm).
+This library was highly inspired by [Ben Nadel's blog post, *User-Friendly Sort Of Alpha-Numeric Data In JavaScript*](http://www.bennadel.com/blog/2495-User-Friendly-Sort-Of-Alpha-Numeric-Data-In-JavaScript.htm).
 
 ## General Usage
 
