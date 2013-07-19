@@ -56,6 +56,11 @@ You can also use it in an array of sort values:
 			{{ user.name }} - {{ title }}
 		</li>
 	</ul>
+	
+#### A Warning
+Because the `natural` function is on `$rootScope`, it is only available from within controllers, or from directives that *do not* isolate their scope.  If a directive is using an isolate scope, it wil need to reference the $rootScope function directly, like so:
+
+    <li ng-repeat="item in items | orderBy:$rootScope.natural('title')">{{ title }}</li>
 
 ### Using the Service
 
