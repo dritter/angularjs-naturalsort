@@ -116,7 +116,13 @@ The cache is very simple: it's a permanent record of every item ever converted. 
 
 ## License
 
-The code is provided under the Apache License.  If you minify this code along with other code, please just make sure that the license is available *somewhere* on the site, it doesn't absolutely have to be at the top of the code.  But it's probably just easier to leave it there.
+The code is provided under the Apache License.  Technically, you need to include the license in if you use the code, but I don't actually care.  Take it an run with it!
+
+> ### Why Include A License At All?
+> 
+> Confusingly, this license is here to protect *other* users of this software.  Basically, using the Apache license means I'm giving away this code.  I don't really care what you do with it — feel free to copy it, reuse it, share it, whatever.  But if I didn't include some sort of license, you would not be legally protected if you decided to use it.
+
+### The Apache License Preamble
 
 > Copyright 2013 Phil DeJarnett - http://www.overzealous.com
 >
