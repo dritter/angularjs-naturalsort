@@ -116,7 +116,7 @@ The cache is very simple: it's a permanent record of every item ever converted. 
 
 ## License
 
-The code is provided under the Apache License.  Technically, you need to include the license in if you use the code, but I don't actually care.  Take it an run with it!
+The code is provided under the Apache License.  Technically, you need to include the license in if you use the code, but I don't actually care.  Take it and run with it!
 
 > ### Why Include A License At All?
 > 
