@@ -1,3 +1,5 @@
+/* global angular: false */
+
 /*!
  * Copyright 2013 Phil DeJarnett - http://www.overzealous.com
  *
@@ -19,13 +21,14 @@ angular.module("naturalSort", [])
 
 // The core natural service
 .factory("naturalService", ["$locale", function($locale) {
+	"use strict";
 		// amount of extra zeros to padd for sorting
     var padding = function(value) {
-			return '00000000000000000000'.slice(value.length);
+			return "00000000000000000000".slice(value.length);
 		},
 		
 		// Calculate the default out-of-order date format (d/m/yyyy vs m/d/yyyy)
-        natDateMonthFirst = $locale.DATETIME_FORMATS.shortDate.charAt(0) == 'm';
+        natDateMonthFirst = $locale.DATETIME_FORMATS.shortDate.charAt(0) === "m",
 		// Replaces all suspected dates with a standardized yyyy-m-d, which is fixed below
         fixDates = function(value) {
 			// first look for dd?-dd?-dddd, where "-" can be one of "-", "/", or "."
@@ -45,20 +48,20 @@ angular.module("naturalSort", [])
                     $m = t;
                 }
 				// return a standardized format.
-                return $y+'-'+$m+'-'+$d;
+                return $y+"-"+$m+"-"+$d;
             });
         },
 		
 		// Fix numbers to be correctly padded
         fixNumbers = function(value) {
-	 		// First, look for anything in the form of d.d or d.d.d...
+			// First, look for anything in the form of d.d or d.d.d...
             return value.replace(/(\d+)((\.\d+)+)?/g, function ($0, integer, decimal, $3) {
 				// If there's more than 2 sets of numbers...
                 if (decimal !== $3) {
                     // treat as a series of integers, like versioning,
                     // rather than a decimal
                     return $0.replace(/(\d+)/g, function ($d) {
-                        return padding($d) + $d
+                        return padding($d) + $d;
                     });
                 } else {
 					// add a decimal if necessary to ensure decimal sorting
@@ -70,8 +73,7 @@ angular.module("naturalSort", [])
 
 		// Finally, this function puts it all together.
         natValue = function (value) {
-            var newValue = fixNumbers(fixDates(value));
-            return newValue;
+            return fixNumbers(fixDates(value));
         };
 
 	// The actual object used by this service
@@ -80,16 +82,17 @@ angular.module("naturalSort", [])
 		naturalSort: function(a, b) {
 			a = natVale(a);
 			b = natValue(b);
-			return (a < b) ? -1 : ((a > b) ? 1 : 0)
+			return (a < b) ? -1 : ((a > b) ? 1 : 0);
 		}
 	};
 }])
 
 // Attach a function to the rootScope so it can be accessed by "orderBy"
 .run(["$rootScope", "naturalService", function($rootScope, naturalService) {
+	"use strict";
 	$rootScope.natural = function (field) {
         return function (item) {
             return naturalService.naturalValue(item[field]);
-        }
+        };
     };
 }]);

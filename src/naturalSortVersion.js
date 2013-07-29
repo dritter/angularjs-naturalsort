@@ -1,3 +1,5 @@
+/* global angular: false */
+
 /*!
  * Copyright 2013 Phil DeJarnett - http://www.overzealous.com
  *
@@ -19,21 +21,22 @@ angular.module("naturalSort", [])
 
 // The core natural service
 .factory("naturalService", function() {
+	"use strict";
 		// amount of extra zeros to padd for sorting
     var padding = function(value) {
-			return '00000000000000000000'.slice(value.length);
+			return "00000000000000000000".slice(value.length);
 		},
 		
 		// Fix numbers to be correctly padded
-        fixNumbers = function(value) {
-	 		// First, look for anything in the form of d.d or d.d.d...
+        natValue = function(value) {
+			// First, look for anything in the form of d.d or d.d.d...
             return value.replace(/(\d+)((\.\d+)+)?/g, function ($0, integer, decimal, $3) {
 				// If there's more than 2 sets of numbers...
                 if (decimal !== $3) {
                     // treat as a series of integers, like versioning,
                     // rather than a decimal
                     return $0.replace(/(\d+)/g, function ($d) {
-                        return padding($d) + $d
+                        return padding($d) + $d;
                     });
                 } else {
 					// add a decimal if necessary to ensure decimal sorting
@@ -41,12 +44,6 @@ angular.module("naturalSort", [])
                     return padding(integer) + integer + decimal + padding(decimal);
                 }
             });
-        },
-
-		// Finally, this function puts it all together.
-        natValue = function (value) {
-            var newValue = fixNumbers(value);
-            return newValue;
         };
 
 	// The actual object used by this service
@@ -55,16 +52,17 @@ angular.module("naturalSort", [])
 		naturalSort: function(a, b) {
 			a = natVale(a);
 			b = natValue(b);
-			return (a < b) ? -1 : ((a > b) ? 1 : 0)
+			return (a < b) ? -1 : ((a > b) ? 1 : 0);
 		}
 	};
 })
 
 // Attach a function to the rootScope so it can be accessed by "orderBy"
 .run(["$rootScope", "naturalService", function($rootScope, naturalService) {
+	"use strict";
 	$rootScope.natural = function (field) {
         return function (item) {
             return naturalService.naturalValue(item[field]);
-        }
+        };
     };
 }]);
