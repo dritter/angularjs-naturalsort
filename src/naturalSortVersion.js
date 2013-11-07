@@ -27,10 +27,16 @@ angular.module("naturalSort", [])
 			return "00000000000000000000".slice(value.length);
 		},
 		
+		// Converts a value to a string.  Null and undefined are converted to ''
+		toString = function(value) {
+			if(value === null || value === undefined) return '';
+			return ''+value;
+		},
+		
 		// Fix numbers to be correctly padded
         natValue = function(value) {
 			// First, look for anything in the form of d.d or d.d.d...
-            return value.replace(/(\d+)((\.\d+)+)?/g, function ($0, integer, decimal, $3) {
+            return toString(value).replace(/(\d+)((\.\d+)+)?/g, function ($0, integer, decimal, $3) {
 				// If there's more than 2 sets of numbers...
                 if (decimal !== $3) {
                     // treat as a series of integers, like versioning,

@@ -31,12 +31,18 @@ angular.module("naturalSort", [])
 			return "00000000000000000000".slice(value.length);
 		},
 		
+		// Converts a value to a string.  Null and undefined are converted to ''
+		toString = function(value) {
+			if(value === null || value === undefined) return '';
+			return ''+value;
+		},
+		
 		// Calculate the default out-of-order date format (d/m/yyyy vs m/d/yyyy)
         natDateMonthFirst = $locale.DATETIME_FORMATS.shortDate.charAt(0) === "m",
 		// Replaces all suspected dates with a standardized yyyy-m-d, which is fixed below
         fixDates = function(value) {
 			// first look for dd?-dd?-dddd, where "-" can be one of "-", "/", or "."
-            return value.replace(/(\d\d?)[-\/\.](\d\d?)[-\/\.](\d{4})/, function($0, $m, $d, $y) {
+            return toString(value).replace(/(\d\d?)[-\/\.](\d\d?)[-\/\.](\d{4})/, function($0, $m, $d, $y) {
 				// temporary holder for swapping below
                 var t = $d;
 				// if the month is not first, we'll swap month and day...
