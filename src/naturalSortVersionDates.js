@@ -33,8 +33,8 @@ angular.module("naturalSort", [])
 			return ''+value;
 		},
 		
-		// Calculate the default out-of-order date format (d/m/yyyy vs m/d/yyyy)
-        natDateMonthFirst = $locale.DATETIME_FORMATS.shortDate.charAt(0) === "m",
+		// Calculate the default out-of-order date format (dd/MM/yyyy vs MM/dd/yyyy)
+        natDateMonthFirst = $locale.DATETIME_FORMATS.shortDate.charAt(0) === "mM",
 		// Replaces all suspected dates with a standardized yyyy-m-d, which is fixed below
         fixDates = function(value) {
 			// first look for dd?-dd?-dddd, where "-" can be one of "-", "/", or "."
