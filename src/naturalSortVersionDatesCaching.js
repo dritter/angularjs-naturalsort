@@ -94,7 +94,7 @@ angular.module("naturalSort", [])
 	return {
 		naturalValue: natValue,
 		naturalSort: function(a, b) {
-			a = natVale(a);
+			a = natValue(a);
 			b = natValue(b);
 			return (a < b) ? -1 : ((a > b) ? 1 : 0);
 		}
