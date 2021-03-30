@@ -1,3 +1,5 @@
+![Archived](https://img.shields.io/badge/Current_Status-archived-blue?style=flat)
+
 # Natural Sort for Angular.js
 
 This repo contains several variations on a library for handling natural sorting when using the `orderBy` filter.  It can also optionally be used as a standalone function by injecting the `naturalSort` service into your controller or other object.
