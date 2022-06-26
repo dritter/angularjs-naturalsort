@@ -2,7 +2,7 @@
   "name": "angular-naturalsort",
   "version": "1.1.4",
   "description": "Natural Sort for Angular.js",
-  "main": "dist/naturalSortVersion.min.js",
+  "main": "src/naturalSortVersion.js",
   "keywords": [
     "javascript",
     "angularjs",
